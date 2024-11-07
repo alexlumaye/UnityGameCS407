@@ -2,6 +2,7 @@
 .vs/
 .idea/
 .vscode/
+.plastic/
 
 # Unity generated files
 Library/
@@ -21,5 +22,9 @@ Thumbs.db
 .crash/
 sysinfo.txt
 
-# Ignore auto-generated package files
-Packages/
+# Ignore everything in the Packages folder
+Packages/*
+
+# But keep these two files
+!Packages/manifest.json
+!Packages/packages-lock.json
