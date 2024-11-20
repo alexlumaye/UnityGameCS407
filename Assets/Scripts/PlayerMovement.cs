@@ -3,17 +3,18 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour {
     public float walkspeed, swimspeed, flyspeed, jumpforce;
     public bool canFly = false;
-    private LayerMask groundLayer, waterLayer; // Layer mask for the ground
+    private LayerMask groundLayer, waterLayer, lavaLayer; // Layer mask for the ground
     private Collider2D playerCollider; // Collider element of the object
     private Rigidbody2D playerRigidbody; // Rigidbody element of the object
     private float lastHoldingJumpBoost;
-    private bool isGrounded, isSwimming, isTouchingWater;
+    private bool isGrounded, isSwimming, isTouchingWater, inLava;
 
     void Start() {
         playerRigidbody = GetComponent<Rigidbody2D>();
         playerCollider = GetComponent<Collider2D>();
         groundLayer = 1 << LayerMask.NameToLayer("Ground");
         waterLayer = 1 << LayerMask.NameToLayer("Water");
+        lavaLayer = 1 << LayerMask.NameToLayer("Lava");
         playerRigidbody.gravityScale = 6;
     }
 
@@ -62,6 +63,18 @@ public class PlayerMovement : MonoBehaviour {
         isGrounded = Physics2D.Raycast(playerFeet, Vector2.down, 0.1f, groundLayer) && playerRigidbody.velocity.y == 0;
         isTouchingWater = Physics2D.BoxCast(playerPos, playerBox, 0, Vector2.zero, 0f, waterLayer);
         isSwimming = Physics2D.Raycast(playerPos, Vector2.up, 0.1f, waterLayer);
+        RaycastHit2D lavaHit = Physics2D.BoxCast(playerPos, playerBox, 0, Vector2.zero, 0f, lavaLayer);
+        //check if player hits lava
+        if (lavaHit.collider != null) {
+            inLava = true;
+            Player player = FindObjectOfType<Player>();
+            if (player != null) {
+                player.TeleportToCheckpoint();
+                player.Damage(5, true);
+            }
+        } else {
+            inLava = false;
+        }
     }
 
     public bool IsUnderwater() {

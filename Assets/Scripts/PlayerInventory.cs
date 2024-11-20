@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 public class PlayerInventory : MonoBehaviour {
     private Dictionary<string, int> inventory = new();
-    
+    public GameObject fireBlockade;
     // Start is called before the first frame update
     void Start() {
 
@@ -20,6 +20,10 @@ public class PlayerInventory : MonoBehaviour {
             inventory[collectible.name] += count;
         } else {
             inventory.Add(collectible.name, count);
+        }
+
+        if (fireBlockade != null && inventory.ContainsKey(collectible.name)) {
+            RemoveBlockade();
         }
     }
 
@@ -46,5 +50,9 @@ public class PlayerInventory : MonoBehaviour {
     public bool HasCollectible(GameObject collectible, int requiredCount = 1) {
         if (!inventory.ContainsKey(collectible.name)) return false;
         return inventory[collectible.name] >= requiredCount;
+    }
+    private void RemoveBlockade() {
+        fireBlockade.SetActive(false);
+        Debug.Log("Blockade removed!");
     }
 }
