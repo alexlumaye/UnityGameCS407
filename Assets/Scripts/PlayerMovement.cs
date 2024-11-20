@@ -60,7 +60,7 @@ public class PlayerMovement : MonoBehaviour {
         }
 
         // Move the character
-        playerRigidbody.velocity =  60f * Time.deltaTime * new Vector2(horizontalVelocity, verticalVelocity);
+        playerRigidbody.velocity = new Vector2(horizontalVelocity, verticalVelocity);
     }
 
     private void CheckEnvironment() {
