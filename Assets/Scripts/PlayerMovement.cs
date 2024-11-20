@@ -1,4 +1,6 @@
+using System;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour {
     public float walkspeed, swimspeed, flyspeed, jumpforce;
@@ -8,6 +10,10 @@ public class PlayerMovement : MonoBehaviour {
     private Rigidbody2D playerRigidbody; // Rigidbody element of the object
     private float lastHoldingJumpBoost;
     private bool isGrounded, isSwimming, isTouchingWater;
+
+    [SerializeField] private InputActionReference moveAction;
+    [SerializeField] private InputActionReference jumpAction;
+
 
     void Start() {
         playerRigidbody = GetComponent<Rigidbody2D>();
@@ -21,36 +27,40 @@ public class PlayerMovement : MonoBehaviour {
         CheckEnvironment();
 
         // Get horizontal input
-        float horizontalVelocity;
-        float verticalVelocity;
+        Vector2 inputValue = moveAction.action.ReadValue<Vector2>();
+        bool isJumpPressed = jumpAction.action.inProgress;
+        float horizontalVelocity = inputValue.x + Input.GetAxis("Horizontal");
+        float verticalVelocity = inputValue.y + Input.GetAxis("Vertical");
 
         // If walking
         if (isSwimming) {
-            horizontalVelocity = Input.GetAxis("Horizontal") * swimspeed;
-            verticalVelocity = Input.GetAxis("Vertical") * swimspeed * 0.75f;
+            horizontalVelocity *= swimspeed;
+            verticalVelocity *= swimspeed * 0.75f;
         } else if (canFly) {
-            horizontalVelocity = Input.GetAxis("Horizontal") * flyspeed;
-            verticalVelocity = Input.GetAxis("Vertical") * flyspeed;
+            horizontalVelocity *= flyspeed;
+            verticalVelocity *= flyspeed;
         } else {
-            if (!isTouchingWater) horizontalVelocity = Input.GetAxis("Horizontal") * walkspeed;
-            else horizontalVelocity = Input.GetAxis("Horizontal") * (walkspeed + swimspeed) / 2;
+            if (isTouchingWater) horizontalVelocity *= (walkspeed + swimspeed) / 2;
+            else horizontalVelocity *= walkspeed;
+
+            // Remove vertical component while walking normally. Will use jump button instead.
             verticalVelocity = playerRigidbody.velocity.y;
 
             // If grounded and jump is pressed, apply force
-            if (isGrounded && Input.GetKey(KeyCode.Space)) {
+            if (isGrounded && isJumpPressed) {
                 verticalVelocity += jumpforce;
                 lastHoldingJumpBoost = Time.time + 0.1f;
             }
 
             // Handle holding space for slightly bigger jumps
-            if (!isGrounded && verticalVelocity > 0 && Time.time - lastHoldingJumpBoost >= 0.03f && Input.GetKey(KeyCode.Space)) {
+            if (!isGrounded && verticalVelocity > 0 && Time.time - lastHoldingJumpBoost >= 0.03f && isJumpPressed) {
                 verticalVelocity *= 1.07f;
                 lastHoldingJumpBoost = Time.time;
             }
         }
 
         // Move the character
-        playerRigidbody.velocity = new Vector2(horizontalVelocity, verticalVelocity);
+        playerRigidbody.velocity =  60f * Time.deltaTime * new Vector2(horizontalVelocity, verticalVelocity);
     }
 
     private void CheckEnvironment() {
