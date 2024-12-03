@@ -1,5 +1,7 @@
 using System;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour {
     public float maxHP, maxOxygen, immortalityFrameDuration;
@@ -7,11 +9,15 @@ public class Player : MonoBehaviour {
     private Vector2 checkpoint = new(0, 0);
     private PlayerMovement playerMovement;
     private CameraMovement cameraMovement;
+    private Image healthBar;
     public bool isImmortal;
 
     void Start() {
         playerMovement = GetComponent<PlayerMovement>();
         cameraMovement = FindObjectOfType<CameraMovement>();
+        healthBar = GameObject.Find("Health").GetComponent<Image>();
+        healthBar.fillAmount = 1f;
+
 
         currentHP = maxHP;
         currentOxygen = maxOxygen;
@@ -37,6 +43,7 @@ public class Player : MonoBehaviour {
     /// <param name="amountToHeal">The amount to heal the player.</param>
     public void Heal(float amountToHeal) {
         currentHP = Math.Min(maxHP, currentHP + amountToHeal);
+        healthBar.fillAmount = currentHP / maxHP;
     }
 
     /// <summary>
@@ -57,6 +64,7 @@ public class Player : MonoBehaviour {
             Debug.Log("You Died");
         }
 
+        healthBar.fillAmount = currentHP / maxHP;
         return true;
     }
 
