@@ -24,6 +24,7 @@ sysinfo.txt
 
 # Ignore everything in the Packages folder
 Packages/*
+Assets/TextMesh Pro/
 
 # But keep these two files
 !Packages/manifest.json
