@@ -10,6 +10,7 @@ public class EPlayerScript : MonoBehaviour {
     private Vector2 targetVelocity;
 
     public int score = 0;
+    public int health = 3;
 
     void Start() {
         playerRigidbody = GetComponent<Rigidbody2D>();
@@ -17,18 +18,31 @@ public class EPlayerScript : MonoBehaviour {
 
     void Update() {
         // Get input
-        float horizontalInput = Input.GetAxis("Horizontal");
-        float verticalInput = Input.GetAxis("Vertical");
+        float horizontalInput = Input.acceleration.x;
+        if (horizontalInput == 0) {
+            horizontalInput = Input.GetAxis("Horizontal");
+        }
 
-        // Set target velocity
-        targetVelocity = new Vector2(horizontalInput * horizontalSpeed, verticalInput * flySpeed);
+            // Set target velocity
+            targetVelocity = new Vector2(horizontalInput * horizontalSpeed, 0);
 
         // Add upward thrust when pressing space
         if (Input.GetKey(KeyCode.Space)) {
             targetVelocity.y += flySpeed;
         }
+        if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began) {
+            targetVelocity.y += flySpeed * 2;
+        }
 
-        score += 1;
+        score += Mathf.CeilToInt(1 * Time.deltaTime);
+
+        // End game when player moves off screen
+
+        float bottomBoundary = Camera.main.transform.position.y - Camera.main.orthographicSize;
+
+        if (playerRigidbody.position.y < bottomBoundary) {
+            damage(health);
+        }
     }
 
     void FixedUpdate() {
@@ -41,5 +55,9 @@ public class EPlayerScript : MonoBehaviour {
 
         // Apply velocity
         playerRigidbody.velocity = smoothedVelocity;
+    }
+
+    public void damage(int amount = 1) {
+        health -= amount;
     }
 }
