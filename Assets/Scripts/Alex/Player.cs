@@ -52,7 +52,7 @@ public class Player : MonoBehaviour {
     /// <param name="amountToDamage">The amount to damage the player, down to 0.</param>
     /// <param name="bypassImmortalityFrame">Whether to bypass the player's immortality frame</param>
     public bool Damage(float amountToDamage, bool bypassImmortalityFrame = false) {
-        if (bypassImmortalityFrame || lastDamageTaken - Time.time > 0 || currentHP == 0 || amountToDamage < 1 || isImmortal) return false;
+        if ((lastDamageTaken - Time.time > 0 && !bypassImmortalityFrame) || currentHP == 0 || amountToDamage < 1 || isImmortal) return false;
 
         lastDamageTaken = Time.time + immortalityFrameDuration;
         currentHP = Math.Max(0, currentHP - amountToDamage);
