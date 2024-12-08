@@ -24,7 +24,7 @@ public class PlayerInventory : MonoBehaviour {
     }
 
     public bool RemoveFromInventory(string collectibleName, int requiredCount) {
-        if (inventory.ContainsKey(collectibleName)) return false;
+        if (!inventory.ContainsKey(collectibleName)) return false;
 
         int collectibleCount = inventory[collectibleName];
 

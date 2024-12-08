@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Controls;
 
 public class PlayerMovement : MonoBehaviour {
     public float walkspeed, swimspeed, flyspeed, jumpforce;
@@ -9,7 +10,7 @@ public class PlayerMovement : MonoBehaviour {
     private Collider2D playerCollider; // Collider element of the object
     private Rigidbody2D playerRigidbody; // Rigidbody element of the object
     private float lastHoldingJumpBoost;
-    private bool isGrounded, isSwimming, isTouchingWater;
+    private bool isGrounded, isSwimming, isTouchingWater, stopMovement;
 
     [SerializeField] private InputActionReference moveAction;
     [SerializeField] private InputActionReference jumpAction;
@@ -61,6 +62,7 @@ public class PlayerMovement : MonoBehaviour {
 
         // Move the character
         playerRigidbody.velocity = new Vector2(horizontalVelocity, verticalVelocity);
+        if (stopMovement) playerRigidbody.velocity = Vector2.zero;
     }
 
     private void CheckEnvironment() {
@@ -82,5 +84,9 @@ public class PlayerMovement : MonoBehaviour {
         canFly = !canFly;
 
         Physics2D.gravity = canFly ? Vector3.zero : new Vector3(0f, -9.81f, 0f);
+    }
+
+    public void ToggleMovement() {
+        stopMovement = !stopMovement;
     }
 }
