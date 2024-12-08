@@ -1,4 +1,6 @@
+using System;
 using UnityEngine;
+
 
 public class PlayerMovement : MonoBehaviour {
     public float walkspeed, swimspeed, flyspeed, jumpforce;
@@ -52,6 +54,8 @@ public class PlayerMovement : MonoBehaviour {
 
         // Move the character
         playerRigidbody.velocity = new Vector2(horizontalVelocity, verticalVelocity);
+
+
     }
 
     private void CheckEnvironment() {
@@ -64,6 +68,7 @@ public class PlayerMovement : MonoBehaviour {
         isTouchingWater = Physics2D.BoxCast(playerPos, playerBox, 0, Vector2.zero, 0f, waterLayer);
         isSwimming = Physics2D.Raycast(playerPos, Vector2.up, 0.1f, waterLayer);
         RaycastHit2D lavaHit = Physics2D.BoxCast(playerPos, playerBox, 0, Vector2.zero, 0f, lavaLayer);
+
         //check if player hits lava
         if (lavaHit.collider != null) {
             inLava = true;

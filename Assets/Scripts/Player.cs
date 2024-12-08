@@ -1,5 +1,7 @@
 using System;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour {
     public float maxHP, maxOxygen, immortalityFrameDuration;
@@ -8,6 +10,10 @@ public class Player : MonoBehaviour {
     private PlayerMovement playerMovement;
     private CameraMovement cameraMovement;
     public bool isImmortal;
+    public bool hasScubaMask;
+    public GameObject barricade;
+    public GameObject[] healthSprites; // Array for health sprites
+    private int currentHealthIndex; // Track current index based on player's health
 
     void Start() {
         playerMovement = GetComponent<PlayerMovement>();
@@ -15,11 +21,15 @@ public class Player : MonoBehaviour {
 
         currentHP = maxHP;
         currentOxygen = maxOxygen;
+
+        UpdateHealthBar(); // Initialize the health bar UI on game start
     }
 
     void Update() {
         if (Time.time - lastOxygenChange > 1f) {
-            currentOxygen = playerMovement.IsUnderwater() ? Math.Max(0, currentOxygen - 1) : Math.Min(maxOxygen, currentOxygen + 5);
+            currentOxygen = playerMovement.IsUnderwater()
+                ? Math.Max(0, currentOxygen - 1)
+                : Math.Min(maxOxygen, currentOxygen + 5);
             lastOxygenChange = Time.time;
         }
 
@@ -32,18 +42,16 @@ public class Player : MonoBehaviour {
     }
 
     /// <summary>
-    ///  Heals the player by an amount up to the maximum HP.
+    /// Heals the player by an amount up to the maximum HP.
     /// </summary>
-    /// <param name="amountToHeal">The amount to heal the player.</param>
     public void Heal(float amountToHeal) {
         currentHP = Math.Min(maxHP, currentHP + amountToHeal);
+        UpdateHealthBar();
     }
 
     /// <summary>
-    /// Returns whether or not the damage was applied (depending on immortality or invincibility frames);
+    /// Handles damage logic, immortality checks, and screen shake effects.
     /// </summary>
-    /// <param name="amountToDamage">The amount to damage the player, down to 0.</param>
-    /// <param name="bypassImmortalityFrame">Whether to bypass the player's immortality frame</param>
     public bool Damage(float amountToDamage, bool bypassImmortalityFrame = false) {
         if (bypassImmortalityFrame || lastDamageTaken - Time.time > 0 || currentHP == 0 || amountToDamage < 1 || isImmortal) return false;
 
@@ -54,13 +62,52 @@ public class Player : MonoBehaviour {
         if (currentHP == 0) {
             TeleportToCheckpoint();
             currentHP = maxHP;
+            UpdateHealthBar();
             Debug.Log("You Died");
         }
 
+        UpdateHealthBar();
         return true;
     }
 
     public void TeleportToCheckpoint() {
         transform.position = checkpoint;
     }
+
+    private void OnTriggerEnter2D(Collider2D other) {
+        if (other.CompareTag("Lava")) {
+            Debug.Log("Player hit the lava!");
+            Damage(10);
+        } else if (other.CompareTag("Barricade")) {
+            Debug.Log("Running barricade portion");
+        if (hasScubaMask) {
+            Destroy(other.gameObject); // Destroy the barricade
+            Debug.Log("Barricade removed!");
+        } else {
+            Debug.Log("You need a scuba mask to pass!");
+        }
+        }
+    }
+
+    public void CollectScubaMask() {
+        hasScubaMask = true;
+        Debug.Log("Scuba mask collected!");
+            if (barricade != null) {
+            Destroy(barricade); // Destroy the barricade when the scuba mask is collected
+        } else {
+            Debug.LogWarning("Barricade reference is missing!");
+        }
+    }
+
+    private void UpdateHealthBar() {
+        // Directly map current HP to the correct health sprite index
+        currentHealthIndex = Mathf.Clamp((int)currentHP - 1, 0, healthSprites.Length - 1);
+
+        for (int i = 0; i < healthSprites.Length; i++) {
+            healthSprites[i].SetActive(i == currentHealthIndex);
+        }
+
+        Debug.Log($"Health Index: {currentHealthIndex} | Current HP: {currentHP}/{maxHP}");
+    }
+
 }

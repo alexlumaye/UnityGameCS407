@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Ground
   - FireGremlin
+  - Lava
+  - Barricade
   layers:
   - Default
   - TransparentFX
@@ -15,8 +17,8 @@ TagManager:
   - UI
   - Lava
   - Checkpoint
-  - 
-  - 
+  - health
+  - movement
   - 
   - 
   - 
@@ -52,6 +54,6 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: 
+  - name: UI
     uniqueID: 1635825411
     locked: 0

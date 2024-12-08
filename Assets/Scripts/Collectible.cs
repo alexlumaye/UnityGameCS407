@@ -17,6 +17,7 @@ public class Collectible : MonoBehaviour {
         if (other.CompareTag("Player")) {
             Destroy(gameObject); // Destroy the collectible.
             other.GetComponent<PlayerInventory>().AddToInventory(gameObject, value);
+            other.GetComponent<Player>().CollectScubaMask();
         }
     }
 }
