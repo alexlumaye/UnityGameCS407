@@ -74,6 +74,7 @@ public class PlayerMovement : MonoBehaviour {
         isGrounded = Physics2D.Raycast(playerFeet, Vector2.down, 0.1f, groundLayer) && playerRigidbody.velocity.y == 0;
         isTouchingWater = Physics2D.BoxCast(playerPos, playerBox, 0, Vector2.zero, 0f, waterLayer);
         isSwimming = Physics2D.Raycast(playerPos, Vector2.up, 0.1f, waterLayer);
+
     }
 
     public bool IsUnderwater() {
