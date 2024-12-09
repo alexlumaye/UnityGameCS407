@@ -9,12 +9,14 @@ public class Player : MonoBehaviour {
     private Vector2 checkpoint = new(0, 0);
     private PlayerMovement playerMovement;
     private CameraMovement cameraMovement;
+    private Animator playerAnimator;
     private Image healthBar;
     public bool isImmortal;
 
     void Start() {
         playerMovement = GetComponent<PlayerMovement>();
         cameraMovement = FindObjectOfType<CameraMovement>();
+        playerAnimator = GetComponent<Animator>();
         healthBar = GameObject.Find("Health").GetComponent<Image>();
         healthBar.fillAmount = 1f;
 
@@ -59,9 +61,20 @@ public class Player : MonoBehaviour {
         cameraMovement.ShakeScreen(2, 0.2f);
 
         if (currentHP == 0) {
-            TeleportToCheckpoint();
-            currentHP = maxHP;
-            Debug.Log("You Died");
+            playerAnimator.SetBool("Die", true);
+            Physics2D.gravity = Vector3.zero;
+            cameraMovement.SetZoomDistanceSmoothly(1);
+            playerMovement.ToggleMovement();
+
+            Helper.SetTimeout(() => {
+                TeleportToCheckpoint();
+                playerAnimator.SetBool("Die", false);
+                Physics2D.gravity = new Vector3(0f, -9.81f, 0f);
+                cameraMovement.SetZoomDistance(10);
+                currentHP = maxHP;
+                healthBar.fillAmount = currentHP;
+                playerMovement.ToggleMovement();
+            }, 5f);
         }
 
         healthBar.fillAmount = currentHP / maxHP;

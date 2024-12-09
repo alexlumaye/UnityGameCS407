@@ -11,6 +11,7 @@ public class PlayerMovement : MonoBehaviour {
     private Rigidbody2D playerRigidbody; // Rigidbody element of the object
     private float lastHoldingJumpBoost;
     private bool isGrounded, isSwimming, isTouchingWater, stopMovement;
+    private Animator playerAnimator;
 
     [SerializeField] private InputActionReference moveAction;
     [SerializeField] private InputActionReference jumpAction;
@@ -22,6 +23,7 @@ public class PlayerMovement : MonoBehaviour {
         groundLayer = 1 << LayerMask.NameToLayer("Ground");
         waterLayer = 1 << LayerMask.NameToLayer("Water");
         playerRigidbody.gravityScale = 6;
+        playerAnimator = GetComponent<Animator>();
     }
 
     void Update() {
@@ -32,6 +34,9 @@ public class PlayerMovement : MonoBehaviour {
         bool isJumpPressed = jumpAction.action.inProgress;
         float horizontalVelocity = inputValue.x + Input.GetAxis("Horizontal");
         float verticalVelocity = inputValue.y + Input.GetAxis("Vertical");
+
+        // Rotation
+        if (horizontalVelocity != 0) playerRigidbody.transform.eulerAngles = new Vector3(0, horizontalVelocity > 0 ? 180 : 0, 0); // Rotate 180 degrees on the Y-axis
 
         // If walking
         if (isSwimming) {
@@ -61,6 +66,7 @@ public class PlayerMovement : MonoBehaviour {
         }
 
         // Move the character
+        playerAnimator.SetBool("Run", horizontalVelocity != 0);
         playerRigidbody.velocity = new Vector2(horizontalVelocity, verticalVelocity);
         if (stopMovement) playerRigidbody.velocity = Vector2.zero;
     }
