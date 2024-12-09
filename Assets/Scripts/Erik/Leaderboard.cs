@@ -14,6 +14,8 @@ public class Leaderboard : MonoBehaviour
 
     private string publicLeaderboardKey = "80de398d131611c192c399f09a04decfbe4505454cd469a3f8f7c0757a9be93a";
 
+    bool entrySet = false;
+
     private void Start() {
         GetLeaderboard();
     }
@@ -29,11 +31,17 @@ public class Leaderboard : MonoBehaviour
     }
 
     public void SetLeaderboardEntry(string username, int score) {
+        if (entrySet) {
+            return;
+        }
+
         LeaderboardCreator.UploadNewEntry(publicLeaderboardKey, username,
             score, ((msg) => {
                 GetLeaderboard();
                 LeaderboardCreator.ResetPlayer();
         }));
+
+        entrySet = true;
     }
 
 }
