@@ -75,7 +75,7 @@ public class Player : MonoBehaviour {
                 healthBar.fillAmount = currentHP;
                 playerMovement.ToggleMovement();
             }, 5f);
-        }
+        } else playerAnimator.SetTrigger("Hurt");
 
         healthBar.fillAmount = currentHP / maxHP;
         return true;

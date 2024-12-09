@@ -12,6 +12,7 @@ public class FireGremlinAI : MonoBehaviour
     private float lastClickTime = 0f;  // Time of the last mouse click
     private float doubleClickTimeLimit = 0.3f;  // Time window for double-click detection
     private SpriteRenderer spriteRenderer;
+    private Animator playerAnimator;
 
     private void Start()
     {
@@ -20,6 +21,7 @@ public class FireGremlinAI : MonoBehaviour
         {
             Debug.LogError("No SpriteRenderer found! Please attach one to the Fire Gremlin.");
         }
+        playerAnimator = FindObjectOfType<Player>().GetComponent<Animator>();
     }
 
     private void Update()
@@ -51,6 +53,7 @@ public class FireGremlinAI : MonoBehaviour
             float timeSinceLastClick = Time.time - lastClickTime;
             if (timeSinceLastClick <= doubleClickTimeLimit)
             {
+                playerAnimator.SetTrigger("Attack");
                 DestroyGremlin();
             }
             lastClickTime = Time.time;
