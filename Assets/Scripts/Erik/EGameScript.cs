@@ -7,10 +7,14 @@ public class EGameScript : MonoBehaviour
 
     public EPlayerScript playerScript;
     public GameObject endGameUI;
+    bool started = false;
+    public GameObject instructionPanel;
 
     // Start is called before the first frame update
     void Start()
     {
+        Time.timeScale = 0;
+        instructionPanel.SetActive(true);
         Screen.orientation = ScreenOrientation.Portrait;
     }
 
@@ -20,6 +24,16 @@ public class EGameScript : MonoBehaviour
         if (playerScript.health <= 0) {
             EndGame();
         }
+        if (!started) {
+            if (Input.GetKey(KeyCode.Space)) { StartGame(); }
+            if (!started && Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began) {  StartGame(); }
+        }
+    }
+
+    void StartGame() {
+        instructionPanel.SetActive(false);
+        Time.timeScale = 1;
+        started = true;
     }
 
     void EndGame() {

@@ -34,6 +34,7 @@ public class ECloudScript : MonoBehaviour {
     private void OnTriggerEnter2D(Collider2D collision) {
         if (isThunder && collision.gameObject.CompareTag("Player")) {
             particleEffectPrefab.Play();
+            Debug.Log("played");
             EPlayerScript playerScript = collision.gameObject.GetComponent<EPlayerScript>();
             playerScript.damage();
         }
