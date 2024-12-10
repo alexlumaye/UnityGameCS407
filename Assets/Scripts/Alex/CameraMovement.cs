@@ -28,8 +28,8 @@ public class CameraMovement : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        if (targetZoomDistance != zoomDistance) zoomDistance += targetZoomDistance > zoomDistance ? 0.01f : -0.01f;
-        if (Math.Abs(zoomDistance - targetZoomDistance) < 0.01) zoomDistance = targetZoomDistance;
+        if (targetZoomDistance != zoomDistance) zoomDistance += targetZoomDistance > zoomDistance ? 0.1f : -0.1f;
+        if (Math.Abs(zoomDistance - targetZoomDistance) < 0.1) zoomDistance = targetZoomDistance;
         
         float playerPosY = transform.position.y;
         cameraOffset.m_Offset.y = Math.Max(zoomDistance - playerPosY, 0);

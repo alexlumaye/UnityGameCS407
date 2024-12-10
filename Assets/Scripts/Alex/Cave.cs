@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Cave : MonoBehaviour {
@@ -20,8 +21,6 @@ public class Cave : MonoBehaviour {
         rock = GameObject.Find("Cave Rock");
         camera = FindObjectOfType<CameraMovement>();
         rockTutorialText.enabled = false;
-
-        playerInventory.AddToInventory("Wooden_Sledgehammer", 1);
     }
 
     void OnTriggerEnter2D(Collider2D other) {
@@ -39,11 +38,7 @@ public class Cave : MonoBehaviour {
 
             Helper.SetTimeout(() => {
                 // Teleport player
-                Player p = FindObjectOfType<Player>();
-                p.SetCheckpoint(new Vector2(500, 500));
-                p.TeleportToCheckpoint();
-                camera.SetZoomDistance(10);
-                playerMovement.ToggleMovement();
+                SceneManager.LoadScene("FireScene");
             }, 3f);
         }
 

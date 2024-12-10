@@ -9,7 +9,6 @@ Library: C:\Users\alexl\OneDrive\Desktop\UnityProject\Grass\Temp\BurstOutput\tem
 --target-framework=NetFramework
 --generate-link-xml=Temp\burst.link.xml
 --temp-folder=C:\Users\alexl\OneDrive\Desktop\UnityProject\Grass\Temp\Burst
---debug=Full
 --key-folder=C:/Program Files/Unity/Hub/Editor/2022.3.50f1/Editor/Data/PlaybackEngines/AndroidPlayer
 --decode-folder=C:\Users\alexl\OneDrive\Desktop\UnityProject\Grass\Library\Burst
 --output=C:\Users\alexl\OneDrive\Desktop\UnityProject\Grass\Temp\BurstOutput\tempburstlibs\armeabi-v7a\lib_burst_generated

@@ -63,14 +63,14 @@ public class Player : MonoBehaviour {
         if (currentHP == 0) {
             playerAnimator.SetBool("Die", true);
             Physics2D.gravity = Vector3.zero;
-            cameraMovement.SetZoomDistanceSmoothly(1);
+            cameraMovement.SetZoomDistanceSmoothly(1.5f);
             playerMovement.ToggleMovement();
 
             Helper.SetTimeout(() => {
                 TeleportToCheckpoint();
                 playerAnimator.SetBool("Die", false);
                 Physics2D.gravity = new Vector3(0f, -9.81f, 0f);
-                cameraMovement.SetZoomDistance(10);
+                cameraMovement.SetZoomDistance(10f);
                 currentHP = maxHP;
                 healthBar.fillAmount = currentHP;
                 playerMovement.ToggleMovement();
