@@ -1,23 +1,25 @@
-
 using UnityEngine;
 
 public class WaterEnemy : MonoBehaviour
 {
     public float speed = 2f;
     public float attackRange = 1f;
-    public float damage = 10f;
+    public float avoidanceRadius = 1.5f; // Radius to maintain distance from other enemies
+    public int damage = 1; // Amount of damage dealt to the player
     public Transform player;
 
     private void Update()
     {
         if (player == null) return;
 
-        float distance = Vector2.Distance(transform.position, player.position);
+        float distanceToPlayer = Vector2.Distance(transform.position, player.position);
 
-        if (distance > attackRange)
+        if (distanceToPlayer > attackRange)
         {
             MoveTowardsPlayer();
         }
+
+        AvoidOtherEnemies();
     }
 
     private void MoveTowardsPlayer()
@@ -26,11 +28,27 @@ public class WaterEnemy : MonoBehaviour
         transform.position += direction * speed * Time.deltaTime;
     }
 
+    private void AvoidOtherEnemies()
+    {
+        Collider2D[] nearbyEnemies = Physics2D.OverlapCircleAll(transform.position, avoidanceRadius);
+
+        foreach (Collider2D collider in nearbyEnemies)
+        {
+            if (collider.gameObject != gameObject && collider.CompareTag("Enemy"))
+            {
+                Vector3 directionAway = (transform.position - collider.transform.position).normalized;
+                transform.position += directionAway * speed * Time.deltaTime * 0.5f; // Adjust speed for smoother avoidance
+            }
+        }
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
             DamagePlayer(collision.gameObject);
+            Debug.Log("Lost life");
+
         }
     }
 
@@ -39,8 +57,7 @@ public class WaterEnemy : MonoBehaviour
         PlayerController playerController = player.GetComponent<PlayerController>();
         if (playerController != null)
         {
-            playerController.oxygenLevel -= damage;
-            Debug.Log("Player took damage! Oxygen level: " + playerController.oxygenLevel);
+            playerController.TakeDamage(damage); // Damage the player
         }
     }
 }

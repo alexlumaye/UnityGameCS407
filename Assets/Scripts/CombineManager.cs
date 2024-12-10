@@ -1,35 +1,31 @@
-
 using UnityEngine;
+using UnityEngine.SceneManagement; // For scene management to restart or quit the game
 
 public class CombineManager : MonoBehaviour
 {
-    public GameObject makeshiftWingsPrefab;
-    private int seaweedCount = 0;
-    private int shellCount = 0;
+    private int totalItemsCollected = 0; // Track total items collected
 
     public void AddItem(string itemName)
     {
-        if (itemName == "Seaweed")
-            seaweedCount++;
-        else if (itemName == "Shell")
-            shellCount++;
+        totalItemsCollected++; // Increment total item count
+        Debug.Log($"Total items collected: {totalItemsCollected}");
 
-        CheckForCombination();
-    }
-
-    private void CheckForCombination()
-    {
-        if (seaweedCount >= 2 && shellCount >= 1)
+        // Check if the total items collected reaches 3
+        if (totalItemsCollected >= 6)
         {
-            CreateWings();
-            seaweedCount -= 2;
-            shellCount -= 1;
+            EndGame();
         }
     }
 
-    private void CreateWings()
+    private void EndGame()
     {
-        Instantiate(makeshiftWingsPrefab, Vector3.zero, Quaternion.identity);
-        Debug.Log("Makeshift wings created!");
+        Debug.Log("You collected 6 items. The game is over!");
+        
+        // Optionally, load a specific "Game Over" or "Win" scene
+        // Replace "GameOverScene" with the actual name of your scene
+        SceneManager.LoadScene("GameOverScene");
+
+        // Or quit the application (useful for a build)
+        // Application.Quit();
     }
 }
