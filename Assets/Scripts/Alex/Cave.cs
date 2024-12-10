@@ -10,7 +10,7 @@ public class Cave : MonoBehaviour {
     PlayerInventory playerInventory;
     TextMeshProUGUI rockTutorialText;
     GameObject rock;
-    CameraMovement camera;
+    CameraMovement playerCamera;
     PlayerMovement playerMovement;
 
     void Start() {
@@ -19,7 +19,7 @@ public class Cave : MonoBehaviour {
 
         rockTutorialText = GameObject.Find("Rock_Tutorial").GetComponent<TextMeshProUGUI>();
         rock = GameObject.Find("Cave Rock");
-        camera = FindObjectOfType<CameraMovement>();
+        playerCamera = FindObjectOfType<CameraMovement>();
         rockTutorialText.enabled = false;
     }
 
@@ -34,7 +34,7 @@ public class Cave : MonoBehaviour {
         } else if (rock.IsDestroyed()) {
             playerMovement.ToggleMovement();
 
-            camera.SetZoomDistanceSmoothly(1.1f);
+            playerCamera.SetZoomDistanceSmoothly(1.1f);
 
             Helper.SetTimeout(() => {
                 // Teleport player
