@@ -10,15 +10,13 @@ public class Collectible : MonoBehaviour {
         collider.isTrigger = true;
     }
 
+    /**
+     What should happen if a player comes in contact with a collectible.
+    */
     void OnTriggerEnter2D(Collider2D other) {
         if (other.CompareTag("Player")) {
-<<<<<<<< HEAD:Assets/Scripts/Alex/Collectible.cs
             Destroy(gameObject); // Destroy the collectible.
             other.GetComponent<PlayerInventory>().AddToInventory(gameObject.name, value);
-========
-            Destroy(gameObject); 
-            other.GetComponent<PlayerInventory>().AddToInventory(gameObject, value);
->>>>>>>> water:OneDrive/Desktop/UnityP1/Assets/Scripts/Collectible.cs
         }
     }
 }

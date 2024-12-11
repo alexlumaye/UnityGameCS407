@@ -1,12 +1,8 @@
-<<<<<<< HEAD:Assets/Scripts/Alex/Player.cs
 using System;
 using TMPro;
-=======
->>>>>>> water:Assets/Scripts/Player.cs
 using UnityEngine;
 using UnityEngine.UI;
 
-<<<<<<< HEAD:Assets/Scripts/Alex/Player.cs
 public class Player : MonoBehaviour {
     public float maxHP, maxOxygen, immortalityFrameDuration;
     private float currentHP, currentOxygen, lastOxygenChange, lastDamageTaken;
@@ -27,34 +23,14 @@ public class Player : MonoBehaviour {
 
         currentHP = maxHP;
         currentOxygen = maxOxygen;
-=======
-public class Player : MonoBehaviour
-{
-    public int maxOxygen = 100;
-    public int currentOxygen = 100;
-    public Vector2 respawnPosition; // Store checkpoint position
-
-    private void Start()
-    {
-        respawnPosition = transform.position; // Set the initial respawn point
->>>>>>> water:Assets/Scripts/Player.cs
     }
 
-    private void Update()
-    {
-        // Continuously deplete oxygen over time or based on game logic
-        UpdateOxygen();
-    }
-
-    private void UpdateOxygen()
-    {
-        if (currentOxygen > 0)
-        {
-            currentOxygen -= 1; 
-            Debug.Log($"Current Oxygen: {currentOxygen}");
+    void Update() {
+        if (Time.time - lastOxygenChange > 1f) {
+            currentOxygen = playerMovement.IsUnderwater() ? Math.Max(0, currentOxygen - 1) : Math.Min(maxOxygen, currentOxygen + 5);
+            lastOxygenChange = Time.time;
         }
 
-<<<<<<< HEAD:Assets/Scripts/Alex/Player.cs
         if (currentOxygen == 0) Damage(1);
         if (transform.position.y < -1000) Damage(100);
     }
@@ -103,20 +79,9 @@ public class Player : MonoBehaviour
 
         healthBar.fillAmount = currentHP / maxHP;
         return true;
-=======
-        if (currentOxygen <= 0)
-        {
-            currentOxygen = 0; // Clamp to zero
-            Debug.Log("Oxygen depleted!");
-        }
->>>>>>> water:Assets/Scripts/Player.cs
     }
 
- 
-    public void SetCheckpoint(Vector2 checkpointPosition)
-    {
-        respawnPosition = checkpointPosition; // Store the new checkpoint position
-        Debug.Log($"Checkpoint set to: {checkpointPosition}");
+    public void TeleportToCheckpoint() {
+        transform.position = checkpoint;
     }
-
 }

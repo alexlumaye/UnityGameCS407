@@ -46,17 +46,11 @@ public class PlayerMovement : MonoBehaviour {
             horizontalVelocity *= flyspeed;
             verticalVelocity *= flyspeed;
         } else {
-<<<<<<<< HEAD:Assets/Scripts/Alex/PlayerMovement.cs
             if (isTouchingWater) horizontalVelocity *= (walkspeed + swimspeed) / 2;
             else horizontalVelocity *= walkspeed;
 
             // Remove vertical component while walking normally. Will use jump button instead.
             verticalVelocity = playerRigidbody.velocity.y;
-========
-            if (!isTouchingWater) horizontalVelocity = Input.GetAxis("Horizontal") * walkspeed;
-            else horizontalVelocity = Input.GetAxis("Horizontal") * (walkspeed + swimspeed) / 2;
-            verticalVelocity = playerRigidbody.linearVelocity.y;
->>>>>>>> water:OneDrive/Desktop/UnityP1/Assets/Scripts/PlayerMovement.cs
 
             // If grounded and jump is pressed, apply force
             if (isGrounded && isJumpPressed) {
@@ -72,13 +66,9 @@ public class PlayerMovement : MonoBehaviour {
         }
 
         // Move the character
-<<<<<<<< HEAD:Assets/Scripts/Alex/PlayerMovement.cs
         playerAnimator.SetBool("Run", horizontalVelocity != 0);
         playerRigidbody.velocity = new Vector2(horizontalVelocity, verticalVelocity);
         if (stopMovement) playerRigidbody.velocity = Vector2.zero;
-========
-        playerRigidbody.linearVelocity = new Vector2(horizontalVelocity, verticalVelocity);
->>>>>>>> water:OneDrive/Desktop/UnityP1/Assets/Scripts/PlayerMovement.cs
     }
 
     private void CheckEnvironment() {
@@ -87,7 +77,7 @@ public class PlayerMovement : MonoBehaviour {
         Vector2 playerHead = playerPos + new Vector2(0, playerCollider.bounds.extents.y);
         Vector2 playerBox = new(playerCollider.bounds.size.x, playerCollider.bounds.size.y);
 
-        isGrounded = Physics2D.Raycast(playerFeet, Vector2.down, 0.1f, groundLayer) && playerRigidbody.linearVelocity.y == 0;
+        isGrounded = Physics2D.Raycast(playerFeet, Vector2.down, 0.1f, groundLayer) && playerRigidbody.velocity.y == 0;
         isTouchingWater = Physics2D.BoxCast(playerPos, playerBox, 0, Vector2.zero, 0f, waterLayer);
         isSwimming = Physics2D.Raycast(playerPos, Vector2.up, 0.1f, waterLayer);
 
