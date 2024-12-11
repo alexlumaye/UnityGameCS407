@@ -17,6 +17,9 @@ public class PlayerController : MonoBehaviour
     private InventoryManager inventoryManager; // Reference to InventoryManager
     private OxygenManager oxygenManager; // Reference to OxygenManager
 
+    // Reference to a Joystick
+    public Joystick joystick; // Link this in the Unity Inspector to a UI Joystick
+
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -43,14 +46,14 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        // Player movement input
-        movement.x = Input.GetAxis("Horizontal");
-        movement.y = Input.GetAxis("Vertical");
+        // Get input from the joystick
+        movement.x = joystick.Horizontal;
+        movement.y = joystick.Vertical;
     }
 
     private void FixedUpdate()
     {
-        // Apply movement
+        // Apply movement to the Rigidbody2D
         rb.linearVelocity = movement * moveSpeed;
     }
 
