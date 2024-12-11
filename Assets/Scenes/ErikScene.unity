@@ -351,7 +351,7 @@ MonoBehaviour:
   m_fontSize: 36
   m_fontSizeBase: 36
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 1
@@ -485,7 +485,7 @@ MonoBehaviour:
   m_fontSize: 36
   m_fontSizeBase: 36
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 1
@@ -607,6 +607,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 745756002924165703, guid: 5d667707ca3f71f4f8b17a12d61c7b23, type: 3}
+      propertyPath: m_Type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 745756002924165703, guid: 5d667707ca3f71f4f8b17a12d61c7b23, type: 3}
+      propertyPath: m_FillAmount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 871124101922391660, guid: 5d667707ca3f71f4f8b17a12d61c7b23, type: 3}
+      propertyPath: m_FillAmount
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2216791928640503685, guid: 5d667707ca3f71f4f8b17a12d61c7b23, type: 3}
       propertyPath: m_Name
       value: Canvas
@@ -692,7 +704,9 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 48691699403486280, guid: 5d667707ca3f71f4f8b17a12d61c7b23, type: 3}
+    - {fileID: 1466973776061774096, guid: 5d667707ca3f71f4f8b17a12d61c7b23, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 4687056503414029674, guid: 5d667707ca3f71f4f8b17a12d61c7b23, type: 3}
       insertIndex: -1
@@ -700,6 +714,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4687056503414029674, guid: 5d667707ca3f71f4f8b17a12d61c7b23, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2060685738}
+    - targetCorrespondingSourceObject: {fileID: 4687056503414029674, guid: 5d667707ca3f71f4f8b17a12d61c7b23, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1828753455}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5d667707ca3f71f4f8b17a12d61c7b23, type: 3}
 --- !u!1 &414157304
@@ -868,8 +885,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 423859935
-  m_SortingLayer: 0
+  m_SortingLayerID: -445857063
+  m_SortingLayer: -1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 3f13d377ef45b794b89d9c069ab8ea3f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1544,6 +1561,17 @@ RectTransform:
   m_AnchoredPosition: {x: -25, y: 175}
   m_SizeDelta: {x: 350, y: 75}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1046662693 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 871124101922391660, guid: 5d667707ca3f71f4f8b17a12d61c7b23, type: 3}
+  m_PrefabInstance: {fileID: 391937460}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1236965248
 GameObject:
   m_ObjectHideFlags: 0
@@ -1726,7 +1754,7 @@ MonoBehaviour:
   birdSpawnDistance: 5
   birdSpeed: 3
   birdSpawnRate: 4
-  maxBirdSpawnHeight: 5
+  maxBirdSpawnHeight: 8
   cloudSprites:
   - {fileID: 21300000, guid: 4c848659f3d76434d8970226427cfe60, type: 3}
   - {fileID: 21300000, guid: b8a6e182d270c974ab3efd1317db41b5, type: 3}
@@ -1763,17 +1791,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerScript: {fileID: 1630203434}
   endGameUI: {fileID: 1399562114}
---- !u!114 &1308496878 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 745756002924165703, guid: 5d667707ca3f71f4f8b17a12d61c7b23, type: 3}
-  m_PrefabInstance: {fileID: 391937460}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  instructionPanel: {fileID: 1828753454}
 --- !u!1 &1351718248
 GameObject:
   m_ObjectHideFlags: 0
@@ -1877,6 +1895,10 @@ PrefabInstance:
     - target: {fileID: 2418386229533767007, guid: cfabf4e05eff31a428b354793d8b6412, type: 3}
       propertyPath: m_Name
       value: InputSystem
+      objectReference: {fileID: 0}
+    - target: {fileID: 2418386229533767007, guid: cfabf4e05eff31a428b354793d8b6412, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4352860691513577186, guid: cfabf4e05eff31a428b354793d8b6412, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2083,7 +2105,7 @@ MonoBehaviour:
   m_fontSize: 36
   m_fontSizeBase: 36
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 1
@@ -2135,6 +2157,7 @@ GameObject:
   - component: {fileID: 1630203431}
   - component: {fileID: 1630203430}
   - component: {fileID: 1630203434}
+  - component: {fileID: 1630203435}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -2157,7 +2180,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 3
+  m_GravityScale: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -2244,9 +2267,9 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: -9095717837082945937, guid: 207ee8102dd4143d288186ef0be518ee, type: 3}
-  m_Color: {r: 0.97735846, g: 0.22346425, b: 0.14568162, a: 1}
+  m_SortingOrder: 2
+  m_Sprite: {fileID: 21300000, guid: 2a530fb8ee84efa428381be764543650, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -2265,8 +2288,8 @@ Transform:
   m_GameObject: {fileID: 1630203426}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.08, y: 1.7, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.3, z: 0.7862495}
+  m_LocalPosition: {x: -0.07, y: 3.51, z: 0}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 0.7862495}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -2283,12 +2306,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49826fefaf2ef1948b9f7658920b31e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flySpeed: 30
+  flyForce: 8
   horizontalSpeed: 3
   maxSpeed: 5
   smoothAcceleration: 5
   score: 0
   health: 3
+  spriteRenderer: {fileID: 1630203432}
+  flyUpSprite: {fileID: 21300000, guid: 2a530fb8ee84efa428381be764543650, type: 3}
+  flyDownSprite: {fileID: 21300000, guid: 15fe803ee465962478e0cfdfd5c855bf, type: 3}
+--- !u!95 &1630203435
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1630203426}
+  m_Enabled: 0
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 72e0b3db5e0551e45aacf997f83ea2ab, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1733846474
 GameObject:
   m_ObjectHideFlags: 0
@@ -2509,6 +2556,81 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!1 &1828753454
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1828753455}
+  - component: {fileID: 1828753457}
+  - component: {fileID: 1828753456}
+  m_Layer: 5
+  m_Name: Panel
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &1828753455
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1828753454}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1244357732}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1828753456
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1828753454}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.89411765}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 6722f6d1a2fc0bd45854fbced53984fe, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1828753457
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1828753454}
+  m_CullTransparentMesh: 1
 --- !u!1 &1927748386
 GameObject:
   m_ObjectHideFlags: 0
@@ -2857,7 +2979,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreText: {fileID: 2060685740}
-  healthBar: {fileID: 1308496878}
+  healthBar: {fileID: 1046662693}
   playerScript: {fileID: 1630203434}
 --- !u!114 &2060685740
 MonoBehaviour:
@@ -2905,8 +3027,8 @@ CanvasRenderer:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 414157307}
   - {fileID: 1630203433}
+  - {fileID: 414157307}
   - {fileID: 1259196116}
   - {fileID: 553557685}
   - {fileID: 841943709}
