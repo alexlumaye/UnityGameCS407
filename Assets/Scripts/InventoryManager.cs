@@ -1,7 +1,7 @@
-
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement; // Add this for scene management
 
 public class InventoryManager : MonoBehaviour
 {
@@ -30,6 +30,14 @@ public class InventoryManager : MonoBehaviour
             UpdateInventoryUI();
 
             Debug.Log($"Item added to inventory! Current count: {items.Count}");
+
+            // Check if the inventory is full
+            if (items.Count == MaxItems)
+            {
+                Debug.Log("Inventory full! Loading next scene...");
+                LoadNextScene();
+            }
+
             return true;
         }
 
@@ -62,5 +70,10 @@ public class InventoryManager : MonoBehaviour
     {
         slot.sprite = null;
         slot.color = new Color(1, 1, 1, 0); // Make slot transparent
+    }
+
+    private void LoadNextScene()
+    {
+        SceneManager.LoadScene("TransitionScene");
     }
 }

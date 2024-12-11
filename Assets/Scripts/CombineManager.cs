@@ -23,7 +23,7 @@ public class CombineManager : MonoBehaviour
         
         // Optionally, load a specific "Game Over" or "Win" scene
         // Replace "GameOverScene" with the actual name of your scene
-        SceneManager.LoadScene("GameOverScene");
+        SceneManager.LoadScene("TransitionScene");
 
         // Or quit the application (useful for a build)
         // Application.Quit();
