@@ -1,8 +1,12 @@
+<<<<<<< HEAD:Assets/Scripts/Alex/Player.cs
 using System;
+using TMPro;
+=======
+>>>>>>> water:Assets/Scripts/Player.cs
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 
+<<<<<<< HEAD:Assets/Scripts/Alex/Player.cs
 public class Player : MonoBehaviour {
     public float maxHP, maxOxygen, immortalityFrameDuration;
     private float currentHP, currentOxygen, lastOxygenChange, lastDamageTaken;
@@ -20,35 +24,47 @@ public class Player : MonoBehaviour {
         healthBar = GameObject.Find("Health").GetComponent<Image>();
         healthBar.fillAmount = 1f;
 
+
         currentHP = maxHP;
         currentOxygen = maxOxygen;
-        checkpoint = transform.position;
+=======
+public class Player : MonoBehaviour
+{
+    public int maxOxygen = 100;
+    public int currentOxygen = 100;
+    public Vector2 respawnPosition; // Store checkpoint position
+
+    private void Start()
+    {
+        respawnPosition = transform.position; // Set the initial respawn point
+>>>>>>> water:Assets/Scripts/Player.cs
     }
 
-    void Update() {
+    private void Update()
+    {
+        // Continuously deplete oxygen over time or based on game logic
         UpdateOxygen();
-
-        if (currentOxygen <= 0) Damage(1);
-        if (transform.position.y < -1000) Damage(100);
     }
 
-    private void UpdateOxygen() {
-        if (currentOxygen > 0) {
-            currentOxygen -= Time.deltaTime;
+    private void UpdateOxygen()
+    {
+        if (currentOxygen > 0)
+        {
+            currentOxygen -= 1; 
             Debug.Log($"Current Oxygen: {currentOxygen}");
-        } else {
-            currentOxygen = 0; // Clamp to zero
-            Debug.Log("Oxygen depleted!");
         }
+
+<<<<<<< HEAD:Assets/Scripts/Alex/Player.cs
+        if (currentOxygen == 0) Damage(1);
+        if (transform.position.y < -1000) Damage(100);
     }
 
     public void SetCheckpoint(Vector2 pos) {
         checkpoint = pos;
-        Debug.Log($"Checkpoint set to: {pos}");
     }
 
     /// <summary>
-    /// Heals the player by an amount up to the maximum HP.
+    ///  Heals the player by an amount up to the maximum HP.
     /// </summary>
     /// <param name="amountToHeal">The amount to heal the player.</param>
     public void Heal(float amountToHeal) {
@@ -80,18 +96,27 @@ public class Player : MonoBehaviour {
                 Physics2D.gravity = new Vector3(0f, -9.81f, 0f);
                 cameraMovement.SetZoomDistance(10f);
                 currentHP = maxHP;
-                healthBar.fillAmount = 1f;
+                healthBar.fillAmount = currentHP;
                 playerMovement.ToggleMovement();
             }, 5f);
-        } else {
-            playerAnimator.SetTrigger("Hurt");
-        }
+        } else playerAnimator.SetTrigger("Hurt");
 
         healthBar.fillAmount = currentHP / maxHP;
         return true;
+=======
+        if (currentOxygen <= 0)
+        {
+            currentOxygen = 0; // Clamp to zero
+            Debug.Log("Oxygen depleted!");
+        }
+>>>>>>> water:Assets/Scripts/Player.cs
     }
 
-    private void TeleportToCheckpoint() {
-        transform.position = checkpoint;
+ 
+    public void SetCheckpoint(Vector2 checkpointPosition)
+    {
+        respawnPosition = checkpointPosition; // Store the new checkpoint position
+        Debug.Log($"Checkpoint set to: {checkpointPosition}");
     }
+
 }

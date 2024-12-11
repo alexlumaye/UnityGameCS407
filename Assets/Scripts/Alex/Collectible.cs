@@ -12,14 +12,13 @@ public class Collectible : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D other) {
         if (other.CompareTag("Player")) {
+<<<<<<<< HEAD:Assets/Scripts/Alex/Collectible.cs
             Destroy(gameObject); // Destroy the collectible.
-            PlayerInventory playerInventory = other.GetComponent<PlayerInventory>();
-
-            if (playerInventory != null) {
-                playerInventory.AddToInventory(gameObject.name, value);
-            } else {
-                Debug.LogWarning("PlayerInventory component not found on the Player object.");
-            }
+            other.GetComponent<PlayerInventory>().AddToInventory(gameObject.name, value);
+========
+            Destroy(gameObject); 
+            other.GetComponent<PlayerInventory>().AddToInventory(gameObject, value);
+>>>>>>>> water:OneDrive/Desktop/UnityP1/Assets/Scripts/Collectible.cs
         }
     }
 }

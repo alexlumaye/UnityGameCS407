@@ -709,31 +709,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      items_by_reidyaro-d47dn3h_0_3_0: -8516249152847608064
-      items_by_reidyaro-d47dn3h_0_3_1: 6755298653532095078
-      items_by_reidyaro-d47dn3h_0_3_10: 7017957992778369360
-      items_by_reidyaro-d47dn3h_0_3_11: -8201488246827076898
-      items_by_reidyaro-d47dn3h_0_3_12: -8649454589952838067
-      items_by_reidyaro-d47dn3h_0_3_13: -4628220566699773027
-      items_by_reidyaro-d47dn3h_0_3_14: 2221753302648039078
-      items_by_reidyaro-d47dn3h_0_3_15: -6668304232162809749
-      items_by_reidyaro-d47dn3h_0_3_16: -7426608618100706945
-      items_by_reidyaro-d47dn3h_0_3_17: -4458370976933483344
-      items_by_reidyaro-d47dn3h_0_3_18: 7611678364029414047
-      items_by_reidyaro-d47dn3h_0_3_19: 5629567021327871494
-      items_by_reidyaro-d47dn3h_0_3_2: 332193950784542149
-      items_by_reidyaro-d47dn3h_0_3_20: 7859962328492708012
-      items_by_reidyaro-d47dn3h_0_3_21: -1455416294416512838
-      items_by_reidyaro-d47dn3h_0_3_22: 3587418409375646615
-      items_by_reidyaro-d47dn3h_0_3_23: 6960295778623976626
-      items_by_reidyaro-d47dn3h_0_3_3: 4091114479317002835
-      items_by_reidyaro-d47dn3h_0_3_4: 8221819406100428732
-      items_by_reidyaro-d47dn3h_0_3_5: -5459505494536129070
-      items_by_reidyaro-d47dn3h_0_3_6: 5364726282039942513
-      items_by_reidyaro-d47dn3h_0_3_7: -5093899249986237783
-      items_by_reidyaro-d47dn3h_0_3_8: -8233971155596784952
-      items_by_reidyaro-d47dn3h_0_3_9: -8507852385089861375
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
