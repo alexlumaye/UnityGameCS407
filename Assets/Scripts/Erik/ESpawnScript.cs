@@ -70,7 +70,7 @@ public class ESpawnScript : MonoBehaviour {
         GameObject bird = Instantiate(birdPrefab, spawnPosition, Quaternion.identity);
         Rigidbody2D rb = bird.GetComponent<Rigidbody2D>();
         Vector2 moveDirection = (player.position - bird.transform.position).normalized * birdSpeed;
-        rb.velocity = moveDirection;
+        rb.linearVelocity = moveDirection;
         if (direction == -1) {
             rb.transform.localScale = new Vector3(-rb.transform.localScale.x, rb.transform.localScale.y, rb.transform.localScale.z);
         }

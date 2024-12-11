@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp", "Assembly
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Danqzq.LeaderboardCreator", "Danqzq.LeaderboardCreator.csproj", "{E79C9F43-CC83-A294-9952-E952BF1B94F9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp-Editor", "Assembly-CSharp-Editor.csproj", "{951F2D3B-0AD0-390E-C600-CE099FB9ECBA}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LeaderboardCreatorEditor", "LeaderboardCreatorEditor.csproj", "{EBDE6DDA-8744-30D7-ABDF-9E0E49FD5116}"
 EndProject
 Global
@@ -21,6 +23,10 @@ Global
 		{E79C9F43-CC83-A294-9952-E952BF1B94F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E79C9F43-CC83-A294-9952-E952BF1B94F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E79C9F43-CC83-A294-9952-E952BF1B94F9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{951F2D3B-0AD0-390E-C600-CE099FB9ECBA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{951F2D3B-0AD0-390E-C600-CE099FB9ECBA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{951F2D3B-0AD0-390E-C600-CE099FB9ECBA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{951F2D3B-0AD0-390E-C600-CE099FB9ECBA}.Release|Any CPU.Build.0 = Release|Any CPU
 		{EBDE6DDA-8744-30D7-ABDF-9E0E49FD5116}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{EBDE6DDA-8744-30D7-ABDF-9E0E49FD5116}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EBDE6DDA-8744-30D7-ABDF-9E0E49FD5116}.Release|Any CPU.ActiveCfg = Release|Any CPU

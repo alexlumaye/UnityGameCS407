@@ -30,7 +30,7 @@ public class EPlayerScript : MonoBehaviour {
             horizontalInput = Input.GetAxis("Horizontal");
         }
 
-        targetVelocity = new Vector2(horizontalInput * horizontalSpeed, playerRigidbody.velocity.y);
+        targetVelocity = new Vector2(horizontalInput * horizontalSpeed, playerRigidbody.linearVelocity.y);
 
         if (Input.GetKeyDown(KeyCode.Space)) {
             ApplyUpwardForce();
@@ -51,7 +51,7 @@ public class EPlayerScript : MonoBehaviour {
     }
 
     void FixedUpdate() {
-        Vector2 currentVelocity = playerRigidbody.velocity;
+        Vector2 currentVelocity = playerRigidbody.linearVelocity;
         Vector2 smoothedVelocity = Vector2.Lerp(
             currentVelocity,
             new Vector2(targetVelocity.x, currentVelocity.y), // Keep vertical velocity
@@ -60,11 +60,11 @@ public class EPlayerScript : MonoBehaviour {
 
         smoothedVelocity.x = Mathf.Clamp(smoothedVelocity.x, -maxSpeed, maxSpeed);
 
-        playerRigidbody.velocity = new Vector2(smoothedVelocity.x, playerRigidbody.velocity.y);
+        playerRigidbody.linearVelocity = new Vector2(smoothedVelocity.x, playerRigidbody.linearVelocity.y);
     }
 
     private void ApplyUpwardForce() {
-        playerRigidbody.velocity = new Vector2(playerRigidbody.velocity.x, 0); // Reset vertical velocity
+        playerRigidbody.linearVelocity = new Vector2(playerRigidbody.linearVelocity.x, 0); // Reset vertical velocity
         playerRigidbody.AddForce(Vector2.up * flyForce, ForceMode2D.Impulse); // Add upward force
     }
 
