@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: 6364156527299824006}
   - component: {fileID: 1079111868119381116}
   m_Layer: 0
-  m_Name: Wood (3)
+  m_Name: Wood
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -421,7 +421,7 @@ GameObject:
   - component: {fileID: 9002199518663796633}
   - component: {fileID: 3046118789901752931}
   m_Layer: 0
-  m_Name: Wood (1)
+  m_Name: Wood
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -564,7 +564,7 @@ GameObject:
   - component: {fileID: 8684104849339698472}
   - component: {fileID: 3328128770924785874}
   m_Layer: 0
-  m_Name: Wood (2)
+  m_Name: Wood
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -872,7 +872,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 39003065735658176, guid: 9672c3141c427104ead6fa9d901c75fd, type: 3}
       propertyPath: m_Name
-      value: Wood (3)
+      value: Wood
       objectReference: {fileID: 0}
     - target: {fileID: 3549116101484783860, guid: 9672c3141c427104ead6fa9d901c75fd, type: 3}
       propertyPath: m_LocalScale.x
@@ -1058,7 +1058,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 39003065735658176, guid: 9672c3141c427104ead6fa9d901c75fd, type: 3}
       propertyPath: m_Name
-      value: Wood (1)
+      value: Wood
       objectReference: {fileID: 0}
     - target: {fileID: 3549116101484783860, guid: 9672c3141c427104ead6fa9d901c75fd, type: 3}
       propertyPath: m_LocalScale.x
@@ -1155,7 +1155,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 39003065735658176, guid: 9672c3141c427104ead6fa9d901c75fd, type: 3}
       propertyPath: m_Name
-      value: Wood (2)
+      value: Wood
       objectReference: {fileID: 0}
     - target: {fileID: 3549116101484783860, guid: 9672c3141c427104ead6fa9d901c75fd, type: 3}
       propertyPath: m_LocalScale.x

@@ -22,6 +22,8 @@ public class CraftingTable : MonoBehaviour {
         bool hasShield = playerInventory.HasCollectible("Wooden_Shield");
         bool hasSledgehammer = playerInventory.HasCollectible("Wooden_Sledgehammer");
 
+        Debug.Log(numWood);
+
         if (!hasSword && numWood < 10) tableText.text = "Collect 10 wood to craft a wooden sword!";
         else if (!hasSword) {
             tableText.text = "You crafted a wooden sword! You can now attack enemies!";
@@ -32,8 +34,9 @@ public class CraftingTable : MonoBehaviour {
             tableText.text = "You crafted a wooden shield! You will no longer get one shot!";
             playerInventory.AddToInventory("Wooden_Shield", 1);
             playerInventory.RemoveFromInventory("Wood", 5);
-        } else if (!hasSledgehammer && numWood < 3) tableText.text = "Collect 3 wood to craft a wooden shield!";
+        } else if (!hasSledgehammer && numWood < 3) tableText.text = "Collect 3 wood to craft a wooden sledgehammer!";
         else if (!hasSledgehammer) {
+            tableText.text = "You crafted a wooden sledgehammer! You can now break rocks!";
             playerInventory.AddToInventory("Wooden_Sledgehammer", 1);
             playerInventory.RemoveFromInventory("Wood", 3);
         } else {
@@ -41,8 +44,6 @@ public class CraftingTable : MonoBehaviour {
         }
 
         tableText.enabled = true;
-
-        Debug.Log("Has Sword: " + hasSword + "\nHas Shield: " + hasShield);
     }
 
     void OnTriggerExit2D(Collider2D other) {

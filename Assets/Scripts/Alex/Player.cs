@@ -26,12 +26,12 @@ public class Player : MonoBehaviour {
     }
 
     void Update() {
-        if (Time.time - lastOxygenChange > 1f) {
+        /*if (Time.time - lastOxygenChange > 1f) {
             currentOxygen = playerMovement.IsUnderwater() ? Math.Max(0, currentOxygen - 1) : Math.Min(maxOxygen, currentOxygen + 5);
             lastOxygenChange = Time.time;
         }
 
-        if (currentOxygen == 0) Damage(1);
+        if (currentOxygen == 0) Damage(1);*/
         if (transform.position.y < -1000) Damage(100);
     }
 
